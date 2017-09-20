@@ -1,23 +1,18 @@
 using System.Collections.Generic;
 
-namespace movietheater
-{
-    public class Movie
-    {
+namespace movietheater {
+    public class Movie : IMenuItem {
         public string Title;
         public string Description;
-        public Dictionary<string, Ticket> Showtimes = new Dictionary<string, Ticket>();
+        public string MenuDescription { get { return Title; } }
+        public List<Ticket> Showtimes = new List<Ticket>();
 
-        public void addShowtime(string time, float cost, int inventory)
-        {
-            Showtimes.Add(time, new Ticket(this, time, cost, inventory));
+        public void addShowtime(string time, float cost, int inventory) {
+            Showtimes.Add(new Ticket(this, time, cost, inventory));
         }
-        public Movie(string title, string description)
-        {
+        public Movie(string title, string description) {
             Title = title;
             Description = description;
         }
-
-
     }
 }
